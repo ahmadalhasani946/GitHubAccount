@@ -1,0 +1,14 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head> 
+    <title>The Result</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Result</h1>
+    <p th:text="'name: ' + ${user.name}" />
+    <p th:text="'contributers: ' + ${user.contributers}" />
+    <p th:text="'forks: ' + ${user.forks}" />
+    <a href="/">Search For Another Account</a>
+</body>
+</html>

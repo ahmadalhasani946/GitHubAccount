@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>GitHub Repositories</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container">
+    <div style="text-align: center;">
+        <h1>GitHub Repositories</h1>
+    </div>
+        <form action="#" th:action="@{/}" th:object="${user}" method="post">
+            <div class="form-group">
+                <label for="name">UserName</label>
+                <input type="text" id="name" th:field="*{name}" class="form-control" placeholder="Enter The UserName">
+                <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</td>
+            </div>
+            <div class="form-group">
+                <label for="forks">Number of the Most Forked Repositories</label>
+                <input type="number" class="form-control" th:field="*{forks}" id="forks" value="1" min="1" step="1">
+                <td th:if="${#fields.hasErrors('forks')}" th:errors="*{forks}">Forked Error</td>
+            </div>
+            <div class="form-group">
+                <label for="contributers">Number of Repositories with the Most Contributers</label>
+                <input type="number" class="form-control" th:field="*{contributers}" id="contributers" value="1" min="1" step="1">
+                <td th:if="${#fields.hasErrors('contributers')}" th:errors="*{contributers}">contributers Error</td>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>
