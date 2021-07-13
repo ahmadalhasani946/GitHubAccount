@@ -8,7 +8,7 @@ public class CSV {
     
     public static void createForksFile(Repository[] repositories, String accountName){
         try {
-            FileWriter myWriter = new FileWriter( "/Files/" + accountName + "_repos.csv");
+            FileWriter myWriter = new FileWriter( accountName + "_repos.csv");
 
             myWriter.write(Repository.titles());
             for(Repository repository : repositories){
