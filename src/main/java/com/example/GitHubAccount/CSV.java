@@ -8,7 +8,7 @@ public class CSV {
     
     public static void createForksFile(Repository[] repositories, String accountName){
         try {
-            FileWriter myWriter = new FileWriter( accountName + "_repos.csv");
+            FileWriter myWriter = new FileWriter( "files/" + accountName + "_repos.csv");
 
             myWriter.write(Repository.titles());
             for(Repository repository : repositories){
@@ -23,7 +23,7 @@ public class CSV {
 
     public static void createUsersFile(List<Contributor> contributors, String accountName){
         try {
-            FileWriter myWriter = new FileWriter(accountName + "_users.csv");
+            FileWriter myWriter = new FileWriter("files/" + accountName + "_users.csv");
 
             myWriter.write(Contributor.titles());
             for(Contributor contributor : contributors){
