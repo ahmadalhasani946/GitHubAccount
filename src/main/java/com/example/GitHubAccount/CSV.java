@@ -16,9 +16,7 @@ public class CSV {
                 myWriter.write(repository.getInfo());
             }
             myWriter.close();
-            System.out.println("Successfully wrote to the file.");
         } catch (IOException e) {
-            System.out.println("An error occurred.");
             e.printStackTrace();
         }
     }
@@ -33,9 +31,7 @@ public class CSV {
                 myWriter.write(contributor.getInfo());
             }
             myWriter.close();
-            System.out.println("Successfully wrote to the file.");
         } catch (IOException e) {
-            System.out.println("An error occurred.");
             e.printStackTrace();
         }
     }
