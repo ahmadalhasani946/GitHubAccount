@@ -1,15 +1,23 @@
 package com.example.GitHubAccount;
 
-import javax.validation.Valid;
-
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.validation.Valid;
+import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 @Controller
@@ -31,22 +39,8 @@ public class UserController {
 
 		Repository[] repos = github.getMostForked(user.getForks());
 
-//		for (Repository repo : repos) {
-//			System.out.println(repo.getForks_count());
-//			System.out.println(repo.getName());
-//			System.out.println("");
-//		}
-
 		List<Contributor> contributors = github.getMostContributers(repos,user.getContributers());
-//		System.out.println("contributors");
-//		for (Contributor contributor : contributors) {
-//			System.out.println();
-//			System.out.println(contributor.getRepositoryName());
-//			System.out.println(contributor.getUserName());
-//			System.out.println(contributor.getContributionQuantity());
-//			System.out.println(contributor.getFollowersQuantity());
-//			System.out.println();
-//		}
+
 
 		CSV.createForksFile(repos, user.getName());
 		CSV.createUsersFile(contributors, user.getName());
@@ -54,5 +48,26 @@ public class UserController {
 		model.addAttribute("user", user);
 		return "result";
 	}
+
+	@GetMapping(path = "/download")
+	public ResponseEntity<Resource> download(@RequestParam("file") String fileName) throws IOException {
+		File file = new File(fileName);
+
+		HttpHeaders header = new HttpHeaders();
+		header.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename="+fileName);
+		header.add("Cache-Control", "no-cache, no-store, must-revalidate");
+		header.add("Pragma", "no-cache");
+		header.add("Expires", "0");
+
+		Path path = Paths.get(file.getAbsolutePath());
+		ByteArrayResource resource = new ByteArrayResource(Files.readAllBytes(path));
+
+		return ResponseEntity.ok()
+				.headers(header)
+				.contentLength(file.length())
+				.contentType(MediaType.parseMediaType("application/octet-stream"))
+				.body(resource);
+	}
+
 
 }

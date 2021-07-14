@@ -9,6 +9,8 @@
     <p th:text="'name: ' + ${user.name}" />
     <p th:text="'contributers: ' + ${user.contributers}" />
     <p th:text="'forks: ' + ${user.forks}" />
+    <a th:href="'/download?file=' + ${user.name} + '_repos.csv'"><p th:text="${user.name} + '_repos.csv'" /></a><br>
+    <a th:href="'/download?file=' + ${user.name} + '_users.csv'"><p th:text="${user.name} + '_users.csv'" /></a><br>
     <a href="/">Search For Another Account</a>
 </body>
 </html>
