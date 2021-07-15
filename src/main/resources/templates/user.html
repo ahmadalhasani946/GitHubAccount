@@ -14,17 +14,17 @@
         <form action="#" th:action="@{/}" th:object="${user}" method="post">
             <div class="form-group">
                 <label for="name">UserName</label>
-                <input type="text" id="name" th:field="*{name}" class="form-control" placeholder="Enter The UserName">
+                <input type="text" id="name" th:field="*{name}" class="form-control" placeholder="Enter The UserName" required>
                 <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</td>
             </div>
             <div class="form-group">
                 <label for="forks">Number of the Most Forked Repositories</label>
-                <input type="number" class="form-control" th:field="*{forks}" id="forks" value="1" min="1" step="1">
+                <input type="number" class="form-control" th:field="*{forks}" id="forks" value="1" min="1" step="1" required>
                 <td th:if="${#fields.hasErrors('forks')}" th:errors="*{forks}">Forked Error</td>
             </div>
             <div class="form-group">
                 <label for="contributers">Number of Repositories with the Most Contributers</label>
-                <input type="number" class="form-control" th:field="*{contributers}" id="contributers" value="1" min="1" step="1">
+                <input type="number" class="form-control" th:field="*{contributers}" id="contributers" value="1" min="1" step="1" required>
                 <td th:if="${#fields.hasErrors('contributers')}" th:errors="*{contributers}">contributers Error</td>
             </div>
 
